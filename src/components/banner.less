@@ -1,0 +1,94 @@
+@import "./../var";
+.banner{
+  margin-top: @nav-height;
+  position: relative;
+  height: calc(~'100vh - @{nav-height}');
+  width: 100%;
+  overflow: hidden;
+  @media (max-width: @small-media){
+    margin-top: @nav-height-mobile;
+    height: auto;
+  }
+  .banner-img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    img{
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      top: -100%;
+      bottom: -100%;
+      left: -100%;
+      right: -100%;
+      margin: auto;
+      @media (max-width: @small-media){
+        display: block;
+        position: static;
+        min-width: 0;
+        min-height: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin: auto;
+      }
+    }
+  }
+  .banner-desc{
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    color:#ffffff;
+    p{
+      line-height: 30px;
+      font-size: 22px;
+      @media (max-width: @small-media){
+        font-size: 20px;
+      }
+      &.company-name-en{
+        font-size: 18px;
+      }
+      &.company-name-slogan{
+        font-size: 24px;
+        line-height: 35px;
+        @media (max-width: @small-media){
+          display: block;
+          font-size: 16px;
+        }
+      }
+      @media (max-width: @small-media){
+        display: inline-block;
+        line-height: 40px;
+      }
+    }
+    a{
+      display: inline-block;
+      background-color: #ffffff;
+      border-radius: 3px;
+      padding: 10px 35px;
+      color: #000000;
+      position: absolute;
+      font-size: 15px;
+      right: 5px;
+      top: 5px;
+      @media (max-width: @small-media){
+        background-color:#ebebeb;
+        position: static;
+        margin-top: 10px;
+        padding: 5px 15px;
+        margin-bottom: 15px;
+      }
+    }
+    @media (max-width: @small-media){
+      padding: 10px 30px;
+      position: relative;
+      bottom: 0;
+      right: 0;
+      color:#fff;
+      background: #0b2749;
+    }
+  }
+}

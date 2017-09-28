@@ -1,0 +1,44 @@
+/*全局css样式*/
+@import "var";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    font-family:"Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;
+}
+a{
+    text-decoration: none;
+}
+#root,.container,[data-reactroot]{
+    height: 100%;
+}
+.max-width {
+    max-width: 1400px;
+    margin: 0 auto  ;
+    overflow: hidden;
+}
+
+.angle{
+    width: 0;
+    height: 0;
+    border-width: 0 0 333px 0;
+    border-style: solid solid solid dashed;
+    border-bottom-width: 180px;
+    @media (max-width: @middle-media) {
+        border-bottom-width: 120px;
+    }
+    @media (max-width: @small-media) {
+        border-bottom-width: 60px;
+    }
+}
+.top-angle{
+    .angle;
+    border-color: #F6F7F0 transparent;
+}
+.bottom-angle{
+    .angle;
+    border-color: transparent #F6F7F0;
+}

@@ -1,0 +1,20 @@
+@import "./../var";
+@mapHeight:@nav-height + 150px;
+.partner{
+  width: 100%;
+  background: #404a59;
+  height:calc(~"100vh - @{mapHeight}");
+  overflow: hidden;
+  .map{
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  @media (max-width: @middle-media) {
+    height: 500px;
+  }
+  @media (max-width: @small-media) {
+    height: 300px;
+  }
+}

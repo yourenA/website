@@ -1,0 +1,161 @@
+@import "./../var";
+.hot-product-content{
+  width:100%;
+
+  padding: 40px 10px;
+  overflow: hidden;
+  position: relative;
+  background: #F6F7F0;
+  ul{
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    left:0;
+    top: 0;
+      .detail-item{
+        margin: 0 30px;
+        width: calc(~"33.3333% - 60px");
+        height: 300px;
+        display: inline-block;
+        font-size: 0;
+        background: #ffffff;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 11;
+
+        &:hover{
+          .box-shadow{
+            background: rgb(115,207,248);
+          }
+
+        }
+        .box-shadow{
+          transition:all 0.3s;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left:30px;
+          top: 30px;
+          background: rgb(229,246,254);
+          @media (max-width: @small-media){
+            display: none;
+          }
+        }
+        @media (max-width: @middle-media){
+          height: 250px;
+        }
+        @media (max-width: @small-media){
+          height: 200px;
+          margin: 0 2px;
+          width: calc(~"50% - 4px");
+          margin-bottom: 2px;
+
+        }
+        .detail-img{
+          width: 100%;
+          height: 200px;
+          position: relative;
+          overflow: hidden;
+
+          @media (max-width: @middle-media){
+            height: 160px;
+          }
+          @media (max-width: @small-media){
+            height: 120px;
+          }
+          img{
+            position: absolute;
+            height: auto;
+            min-width: 100%;
+            min-height: 100%;
+            top: -100%;
+            bottom: -100%;
+            left: -100%;
+            right: -100%;
+            margin: auto;
+            @media (max-width: @middle-media){
+              height: 120px;
+            }
+          }
+          .hot-tip{
+            display: inline-block;
+            background: url("./../image/hot.png") no-repeat 100% top;
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 0;
+            right:0;
+            font-size: 12px;
+            color: #ffffff;
+            @media (max-width: @small-media){
+              background-size: 80%;
+              font-size: 10px;
+            }
+            span{
+              display: inline-block;
+              transform:rotate(45deg) translate(90%, -50%);
+              @media (max-width: @small-media){
+                transform:rotate(45deg) translate(97%, -94%);
+              }
+            }
+          }
+        }
+
+        .detail-desc{
+          background: #ffffff;
+          height: 95px;
+          overflow: hidden;
+          font-size: 16px;
+          padding: 10px;
+          color: #646464;
+          line-height: 20px;
+          position: relative;
+          @media (max-width: @middle-media){
+            height: 85px;
+            font-size: 14px;
+            padding: 8px;
+          }
+          @media (max-width: @small-media){
+            height: 75px;
+            font-size: 13px;
+            padding: 6px;
+          }
+          p{
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          a{
+            background: #0b2749;
+            padding: 7px 15px;
+            color:#ffffff;
+            font-size: 14px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 3px;
+            @media (max-width: @middle-media){
+              padding: 5px 10px;
+              font-size: 14px;
+              right: 8px;
+              bottom: 8px;
+            }
+            @media (max-width: @small-media){
+              padding: 5px 5px;
+              font-size: 12px;
+              right: 5px;
+              bottom: 5px;
+            }
+          }
+        }
+
+    }
+  }
+
+}
