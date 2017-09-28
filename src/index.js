@@ -10,5 +10,10 @@ const render = Component =>
         document.getElementById('root')
     );
 render(App)
-
-registerServiceWorker();
+if(module.hot) {
+    module.hot.accept('./App', () => {
+        const NextRootContainer = require('./App').default
+        render(NextRootContainer)
+    })
+}
+// registerServiceWorker();
