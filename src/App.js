@@ -13,6 +13,7 @@ import './app.less'
 import asyncComponent from './AsyncComponent'
 
 import homeContainer from './containers/Home/HomeContainer'
+import TurnTop from './components/Turn-top'
 require('es6-promise').polyfill();
 const history = createHistory()
 var parser = require('ua-parser-js');
@@ -38,7 +39,10 @@ const ContactUs = asyncComponent(() =>
 import
 (/* webpackChunkName: "ContactUs" */ "./components/ContactUs")
 )
-
+const Search = asyncComponent(() =>
+import
+(/* webpackChunkName: "search" */ "./containers/Search/SearchContainer")
+)
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -58,8 +62,9 @@ export default class App extends React.Component {
             <Router history={history}>
                 <Route render={({location}) => {
                     return (
-                        <div key={location.pathname}>
+                        <div key={location.pathname} className="react">
                             <Route location={location} exact path="/" component={homeContainer}/>
+                            <Route location={location} path="/search" component={Search}/>
                             <Route location={location} path="/contact" component={ContactUs}/>
                             <Route location={location} exact path="/products" component={Products}/>
                             <Route location={location} path="/products/:id" component={ProductDetail}/>

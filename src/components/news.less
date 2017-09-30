@@ -1,0 +1,99 @@
+@import "./../var";
+.news-box{
+  width: 100%;
+  margin-top: 60px;
+  .news {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 125px 0;
+    position: relative;
+    background: url("../image/ipad.png") center 100% no-repeat;
+    height: 1140px;
+    @media (max-width: @small-media){
+      background:none;
+      height: auto;
+      padding:  0;
+    }
+    ul {
+      background: #F6F7F0;
+      list-style: none;
+      font-size: 0;
+      z-index: 65;
+      max-width: 698px;
+      height: 895px;
+      margin: 0 auto;
+      overflow-y: scroll;
+      @media (max-width: @small-media){
+        height: auto;
+        overflow-y:auto
+      }
+      li{
+        margin-top: 8px;
+        margin-bottom: 8px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: flex;
+        padding: 10px;
+        color:#333;
+        background: #ffffff;
+        .avatar{
+          width: 80px;
+          height: 80px;
+          @media (max-width: @small-media){
+            width: 60px;
+            height: 60px;
+          }
+          .avatar-img{
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            margin: 10px;
+            background: #000000;
+            border-radius: 50%;
+            @media (max-width: @small-media){
+              width: 40px;
+              height: 40px;
+            }
+            img{
+              margin-top: 8px;
+              display: inline-block;
+              width: 40px;
+              height: 40px;
+              @media (max-width: @small-media){
+                margin-top: 5px;
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+        }
+        .content{
+          flex:1;
+          .desc{
+            margin-top: 25px;
+            font-size: 16px;
+            line-height: 1.8;
+            @media (max-width: @small-media){
+              margin-top: 15px;
+              font-size: 14px;
+              line-height: 1.5;
+            }
+          }
+          .image{
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            img{
+              max-width: 100%;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}

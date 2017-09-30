@@ -25,9 +25,9 @@ export default class Header extends React.Component {
         return (
             <div className="style_body">
                 <div className="style_main">
-                    <Link to="/" className="style_a" onClick={() => handleClick('right')}>
+                    <span onClick={()=>this.props.history.goBack()} className="style_a" >
                         <i className="fa fa-arrow-left"></i>
-                    </Link>
+                    </span>
                     <div className="style_div_content">
                         <i className="fa fa-search"></i>
                         <input type="text"
@@ -44,7 +44,4 @@ export default class Header extends React.Component {
     }
 }
 Header.propTypes = {
-    handleClick: PropTypes.func.isRequired,
-    currentHot: PropTypes.string.isRequired,
-    upDateValue: PropTypes.func.isRequired
 }

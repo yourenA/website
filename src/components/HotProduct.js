@@ -14,12 +14,13 @@ export default class HotProduct extends React.Component {
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
-            data:[{name:'产品0001',image:item2},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1}]
+            data:[{name:'产品0001',image:item2},{name:'产品0001',image:item2},{name:'产品0001',image:item2},{name:'产品0001',image:item2},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1}]
         }
     }
     render() {
         const that=this;
-        const categoryInfoContent=this.state.data.map(function (item2,index2) {
+
+        const categoryInfoContent=this.state.data.slice(0,6).map(function (item2,index2) {
             return(
                 <div key={index2} className="detail-item">
                     <div className="detail-img">

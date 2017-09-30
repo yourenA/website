@@ -10,6 +10,7 @@ export default class Category extends React.Component {
 
     constructor(props) {
         super(props);
+        this.scrollTopTimer=null;
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
@@ -18,10 +19,30 @@ export default class Category extends React.Component {
 
     componentDidMount() {
     }
+    turnTop=()=>{
+        const body = document.querySelector('body');
+        const that=this;
+        if(this.scrollTopTimer){
+            clearInterval(this.scrollTopTimer);
+        }
+        if(this.scrollBottomTimer){
+            clearInterval(this.scrollBottomTimer);
+        }
+        this.scrollTopTimer = setInterval(function () {
+            const backTop = body.scrollTop;
+            var speedTop = backTop / 8;
+            body.scrollTop=(backTop - speedTop);
+            if (backTop == 0) {
+                console.log('到达顶部')
+                clearInterval( that.scrollTopTimer);
+            }
+        }, 20);
+    }
     render() {
         return (
             <div className="footer">
                 <div className="footer-container">
+                    <span className="turn-top" onClick={this.turnTop}></span>
                     <div className="footer-category">
                         <h3> <i className="fa fa-home" aria-hidden="true"></i>关于我们  </h3>
                         <div className="category-content">

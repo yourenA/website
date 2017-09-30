@@ -27,10 +27,15 @@ export default class Banner extends React.Component {
                     <img src={pc1} alt=""/>
                 </div>
                 <div className="banner-desc">
-                    <p className="company-name">辂轺科技</p>
-                    <p className="company-name-en">AMware</p>
-                    <p className="company-name-slogan">专注于汽车ECU（电子控制单元）产品开发</p>
+                    <div >
+                        <p className="company-name">辂轺科技</p> <p className="company-name-en">AMware</p>
+                        <p className="company-name-slogan">专注于汽车电子控制单元产品开发</p>
+                    </div>
                     <Link to='/'>查看更多</Link>
+                    <div className="border border-top"></div>
+                    <div className="border border-right"></div>
+                    <div className="border border-bottom"></div>
+                    <div className="border border-left"></div>
                 </div>
             </div>
         )

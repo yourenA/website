@@ -4,11 +4,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import item1 from './../../image/1.jpg'
-import item2 from './../../image/2.jpg'
-import item3 from './../../image/3.jpg'
-import item4 from './../../image/item4.jpg'
-import item5 from './../../image/5.jpg'
+import item1 from './../../image/icon1.png'
+import item2 from './../../image/icon2.png'
+import item3 from './../../image/icon3.png'
+import item4 from './../../image/icon5.png'
+import item5 from './../../image/icon4.png'
 import pd1 from './../../image/product1.jpg'
 import './categoryInfeo.less'
 import ColorLine from './ColorLine'
@@ -21,13 +21,13 @@ export default class CategoryInfo extends React.Component {
         this.state = {
             data: [{
                 index: 0,
-                image: item2,
-                name: 'EPB电子驻车制动系统E',
+                image: item5,
+                name: 'EPB电子驻车制动系统',
                 desc: '电动助力转向系统（Electric Power Steering），既节省能量，又保护了环境。'
             },
                 {index: 1, image: item3, name: 'EPB电子驻车制动系统', desc: '电动助力转向系统（Electric Power Steering），既节省能量，又保护了环境。'},
                 {index: 2, image: item4, name: 'EPB电子驻车制动系统', desc: '电动助力转向系统（Electric Power Steering），既节省能量，又保护了环境。'},
-                {index: 3, image: item5, name: 'EPB电子驻车制动系统', desc: '电动助力转向系统（Electric Power Steering），既节省能量，又保护了环境。'},
+                {index: 3, image: item1, name: 'EPB电子驻车制动系统', desc: '电动助力转向系统（Electric Power Steering），既节省能量，又保护了环境。'},
                 {index: 4, image: item2, name: 'EPB电子驻车制动系统', desc: '电动助力转向系统（Electric Power Steering），既节省能量，又保护了环境。'}],
             tempData: [],
             products: [{category:0,title:'EPB电子驻车制动系统EPB电子驻车制动系统',data:[{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1},{name:'产品0001',image:pd1}]},
