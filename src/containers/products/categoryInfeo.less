@@ -5,6 +5,7 @@
   padding-bottom: 30px;
 }
 .categoryInfo{
+  background: #ffffff;
   display: flex;
   width:100%;
   max-width: 1400px;
@@ -18,19 +19,22 @@
     list-style: none;
   }
   li{
-    width: 200px;
-    height: 150px;
+    width: 150px;
+    height: 100px;
     position: relative;
     cursor: pointer;
     background: #ffffff;
     overflow: hidden;
+    border-right: 1px solid #333333;
+    border-left: 1px solid #333333;
+    border-bottom: 1px solid #333333;
     @media (max-width: @middle-media){
       width: 150px;
-      height: 125px;
+      height: 80px;
     }
     @media (max-width: @small-media){
       width: 85px;
-      height: 85px;
+      height: 60px;
     }
     img{
       margin: 0 auto;
@@ -47,6 +51,10 @@
       }
     }
     p{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
       font-size: 16px;
       text-align: center;
       color: #333;
@@ -78,7 +86,7 @@
 .categoryInfo-content{
   vertical-align: top;
   display: inline-block;
-  width: calc(~"100% - 200px");
+  width: calc(~"100% - 150px");
   overflow: hidden;
   position: relative;
 
@@ -103,6 +111,7 @@
       width: 100%;
       height: 100%;
       padding: 25px;
+
       &.myFadeOut{
         display: none;
       }
@@ -133,15 +142,16 @@
         }
       }
       .detail-item{
-        margin: 0 15px;
-        width: calc(~"33.3333% - 30px");
-        height: 300px;
+        margin: 0 10px;
+        width: calc(~"33.3333% - 20px");
+        background: #F6F7F0;
+        height: auto;
         display: inline-block;
         font-size: 0;
-        background: #ffffff;
         overflow: hidden;
         margin-bottom: 20px;
         border-radius: 0 0 10px 10px;
+        border: 1px solid #333333;
         &:hover{
           box-shadow: 0px 1px 15px 2px rgba(0, 0, 0, 0.4);
         }
@@ -149,10 +159,8 @@
           margin: 0 10px;
           margin-bottom: 15px;
           width: calc(~"50% - 20px");
-          height: 250px;
         }
         @media (max-width: @small-media){
-          height: 200px;
           margin: 4px 4px;
           width: calc(~"50% - 8px");
           margin-bottom: 2px;
@@ -161,27 +169,18 @@
         }
         .detail-img{
           width: 100%;
-          height: 200px;
+          height: auto;
           position: relative;
           overflow: hidden;
           @media (max-width: @middle-media){
-            height: 160px;
           }
           @media (max-width: @small-media){
-            height: 120px;
           }
           img{
-            position: absolute;
+            width: 100%;
             height: auto;
-            min-width: 100%;
-            min-height: 100%;
-            top: -100%;
-            bottom: -100%;
-            left: -100%;
-            right: -100%;
-            margin: auto;
             @media (max-width: @middle-media){
-              height: 120px;
+              height: auto;
             }
           }
         }

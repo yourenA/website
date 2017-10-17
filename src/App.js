@@ -39,6 +39,14 @@ const ContactUs = asyncComponent(() =>
 import
 (/* webpackChunkName: "ContactUs" */ "./components/ContactUs")
 )
+const News = asyncComponent(() =>
+import
+(/* webpackChunkName: "News" */ "./components/News")
+)
+const Partner = asyncComponent(() =>
+import
+(/* webpackChunkName: "Partner" */ "./components/Partner")
+)
 const Search = asyncComponent(() =>
 import
 (/* webpackChunkName: "search" */ "./containers/Search/SearchContainer")
@@ -66,6 +74,8 @@ export default class App extends React.Component {
                             <Route location={location} exact path="/" component={homeContainer}/>
                             <Route location={location} path="/search" component={Search}/>
                             <Route location={location} path="/contact" component={ContactUs}/>
+                            <Route location={location} path="/news" component={News}/>
+                            <Route location={location} path="/partner" component={Partner}/>
                             <Route location={location} exact path="/products" component={Products}/>
                             <Route location={location} path="/products/:id" component={ProductDetail}/>
                         </div>

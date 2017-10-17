@@ -42,6 +42,10 @@ export default class Nav extends React.Component {
                 <div className="left">
                     <ul>
                         <li><Link to='/products'>产品与服务</Link></li>
+                        <li><Link to='/news'>新闻</Link></li>
+
+                        <li><Link to='/contact'>联系我们</Link></li>
+                        <li><Link to='/partner'>合作伙伴</Link></li>
                   {/*      <li><Link to='/products'>前瞻技术</Link></li>
                         <li><Link to='/products'>我们的团队</Link></li>*/}
                     </ul>
@@ -51,7 +55,8 @@ export default class Nav extends React.Component {
                 </div>
                 <div className="right">
                     <ul>
-                        <li><Link to='/contact'>联系我们</Link></li>
+
+
                     </ul>
                 </div>
                 <div className="search-Placeholder">
@@ -71,7 +76,10 @@ export default class Nav extends React.Component {
                     className={this.state.showMobileMenu ? "mobile-menu show-mobile-menu" : "mobile-menu hide-mobile-menu"}>
                     <ul>
                         <li><Link to='/products'>产品与服务</Link></li>
+                        <li><Link to='/news'>新闻</Link></li>
+
                         <li><Link to='/contact'>联系我们</Link></li>
+                        <li><Link to='/partner'>合作伙伴</Link></li>
                     </ul>
                 </div>
             </nav>

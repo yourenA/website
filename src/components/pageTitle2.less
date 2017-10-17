@@ -75,14 +75,19 @@
 
     font-size: 24px;
     width: 100%;
-    text-align: center;
     height: 30px;
     line-height: 100px;
-
+    position: relative;
     p{
-      visibility: hidden;
-      &.animated{
-        visibility: visible;
+      left: 50%;
+      top: -100px;
+      transform: translate(-50%,0);
+      position: absolute;
+      transition: all 0.5s ease-in-out;
+      opacity: 0;
+      &.down{
+        top: 0;
+        opacity: 1;
       }
     }
     @media (max-width: @middle-media) {

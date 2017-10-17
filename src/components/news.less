@@ -2,6 +2,22 @@
 .news-box{
   width: 100%;
   margin-top: 60px;
+  &>h3 {
+    text-align: center;
+    padding: 80px 60px 40px;
+    font-size: 34px;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 400;
+  }
+  .news-content{
+    padding-top: 50px;
+    width: 100%;
+    background:#F6F7F0;
+    @media (max-width: @small-media){
+      padding:  0;
+    }
+  }
   .news {
     width: 100%;
     max-width: 1400px;

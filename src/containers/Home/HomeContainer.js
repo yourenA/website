@@ -20,8 +20,12 @@ import PageTtile from './../../components/PageTitle2'
 import HotProduct from './../../components/HotProduct'
 import Advantage from './../../components/Advantage'
 import News from './../../components/News'
+import Swipe from './../../components/swipe'
 import ReactSwipe from 'react-swipe';
 import './index.less'
+import pc1 from './../../components/pc1.jpg'
+import pc2 from './../../image/1.jpg'
+import pc3 from './../../image/3.jpg'
 import Left from'./../../image/left.png'
 import Right from'./../../image/right.png'
 // import Header from 'components/Home/Header'
@@ -40,7 +44,8 @@ export default class HomeContainer extends React.Component {
             winWidth: 0,
             swipeIndex: 0,
             swipeCount: 0,
-            swipetitle:''
+            swipetitle:'',
+            data:[{imageUrl:pc1,title:'辂轺科技',desc:'专注于汽车电子控制单元产品开发'},{imageUrl:pc2,title:'辂轺产品',desc:'专注于汽车电子控制单'},{imageUrl:pc3,title:'辂轺科技3',desc:'专注于汽车电专注于汽车电子控制单元产品开发'}]
         }
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
@@ -121,21 +126,6 @@ export default class HomeContainer extends React.Component {
         this.setState({
             swipeIndex: index
         })
-        if(index===0){
-            this.setState({
-                swipetitle: ''
-            })
-        }
-        if(index===1){
-            this.setState({
-                swipetitle: '产品分类'
-            })
-        }
-        if(index===2){
-            this.setState({
-                swipetitle: '热门产品'
-            })
-        }
     }
     slide = (index)=> {
         this.refs.reactSwipe.slide(index);
@@ -147,22 +137,23 @@ export default class HomeContainer extends React.Component {
         // for(let i=0;i<this.state.swipeCount;i++){
         //     dotsArr.push(1)
         // }
-        // const renderDots=dotsArr.map(function (item,index) {
-        //     return (
-        //         <li key={index} onClick={()=>that.slide(index)} className={index===that.state.swipeIndex?'active':''}>
-        //
-        //         </li>
-        //     )
-        // })
+        const renderSwipe=this.state.data.map(function (item,index) {
+            return (
+                <div key={index}>
+                    <Swipe  data={item}/>
+                </div>
+
+            )
+        })
         return (
             <div className="container">
                 <Nav history={this.props.history}/>
                 <div className="show-if-pc">
                     <div className="carousel-box" ref="carousel" onMouseEnter={this.onmousemove} onMouseLeave={this.onmouseout}>
                         <ReactSwipe className="carousel" ref="reactSwipe" swipeOptions={{continuous: false,callback: this.callback}}>
-                            <div><Banner history={this.props.history}/></div>
-                            <div><Category showAll={false} history={this.props.history}/></div>
-                            <div><HotProduct/></div>
+                            {
+                                renderSwipe
+                            }
                         </ReactSwipe>
                         <div className="control">
                             <div className="control-text">
@@ -170,7 +161,7 @@ export default class HomeContainer extends React.Component {
                                     <li>{this.state.swipeIndex + 1}</li>
                                     <li>/</li>
                                     <li>{this.state.swipeCount}</li>
-                                    <li>{this.state.swipetitle}</li>
+                                    <li>{this.state.data[this.state.swipeIndex].title}</li>
                                 </ul>
 
                             </div>
@@ -199,11 +190,11 @@ export default class HomeContainer extends React.Component {
                     <HotProduct/>
                     <div className="bottom-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
                 </div>
-                <PageTtile showLeftLine={true} title='辂轺最新简闻'/>
+              {/*  <PageTtile showLeftLine={true} title='辂轺最新简闻'/>
                 <News />
 
                 <PageTtile showLeftLine={true} title='辂轺合作伙伴' desc=''/>
-                <Partner  />
+                <Partner  />*/}
                 <Footer />
             </div>
         )
