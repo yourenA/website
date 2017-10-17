@@ -113,7 +113,6 @@ export default class ProductDetail extends React.Component {
             <div className="product-detail">
                 {renderDetail}
 
-
                 <div className="pswp" tabIndex="-1" role="dialog" aria-hidden="true" ref={(div) => {this.pswpElement = div;} }>
 
                     <div className="pswp__bg" />

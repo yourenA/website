@@ -47,7 +47,7 @@ export default class Nav extends React.Component {
                     </ul>
                 </div>
                 <div className="center">
-                    <Link to='/'><img src={Logo} alt=""/><h1>辂轺信息科技有限公司</h1></Link>
+                    <Link to='/'><img src={Logo} alt=""/><h1>广州辂轺信息科技有限公司</h1></Link>
                 </div>
                 <div className="right">
                     <ul>

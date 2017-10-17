@@ -75,7 +75,7 @@ export default class HomeContainer extends React.Component {
                         canSwipt=false;
                         setTimeout(function () {
                             canSwipt=true
-                        },800)
+                        },600)
                     }
                 }
             }else if(event.wheelDelta===-120){
@@ -86,7 +86,7 @@ export default class HomeContainer extends React.Component {
                         canSwipt=false;
                         setTimeout(function () {
                             canSwipt=true
-                        },800)
+                        },600)
                     }
                 }
 
