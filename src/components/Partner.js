@@ -5,6 +5,8 @@ import React from 'react'
 import './partner.less'
 import Nav from './Nav'
 import Footer from './Footer'
+import AngleTop from './AngleTop'
+import AngleBottom from './AngleBottom'
 export default class Partner extends React.Component {
 
     constructor(props) {
@@ -195,11 +197,12 @@ export default class Partner extends React.Component {
                 <Nav history={this.props.history}/>
                 <div className="partner">
                     <h3>合作伙伴</h3>
+                    <AngleTop />
                     <div className="partner-content">
                         <div className="map">
                         </div>
                     </div>
-
+                    <AngleBottom />
                 </div>
                 <Footer></Footer>
             </div>

@@ -2,7 +2,8 @@
  * Created by Administrator on 2017/9/13.
  */
 import React from 'react'
-import PropTypes from 'prop-types'
+import AngleTop from './AngleTop'
+import AngleBottom from './AngleBottom'
 import Nav from './Nav'
 import Footer from './Footer'
 import adatar from './../image/avatar.png'
@@ -47,6 +48,7 @@ export default class News extends React.Component {
                 <Nav history={this.props.history}/>
                 <div className="news-box">
                     <h3>辂轺新闻</h3>
+                    <AngleTop />
                    <div className="news-content">
                        <div className="news">
                            <ul>
@@ -54,7 +56,7 @@ export default class News extends React.Component {
                            </ul>
                        </div>
                    </div>
-
+                    <AngleBottom />
                 </div>
                 <Footer />
             </div>

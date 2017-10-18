@@ -6,19 +6,16 @@ import './contactUs.less'
 import Nav from './Nav'
 import Footer from './Footer'
 import contact from '../image/contact.jpg'
+import AngleTop from './AngleTop'
+import AngleBottom from './AngleBottom'
 export default class ContactUs extends React.Component {
 
     constructor(props) {
         super(props);
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
-        this.state = {}
-    }
-
-    componentDidMount() {
-    }
-
-    componentWillUnmount = ()=> {
+        this.state = {
+        }
     }
 
     render() {
@@ -27,7 +24,9 @@ export default class ContactUs extends React.Component {
                 <Nav history={this.props.history}/>
                 <div className="contactUs">
                     <h3>联系我们</h3>
+                    <AngleTop />
                     <div className="contactUs-content">
+
                         <div className="contactUs-content-box">
                             <div className="contactUs-left">
                                 <div>
@@ -50,6 +49,7 @@ export default class ContactUs extends React.Component {
                         </div>
 
                     </div>
+                    <AngleBottom />
                 </div>
                 <Footer />
             </div>

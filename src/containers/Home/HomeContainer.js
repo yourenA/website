@@ -21,6 +21,8 @@ import HotProduct from './../../components/HotProduct'
 import Advantage from './../../components/Advantage'
 import News from './../../components/News'
 import Swipe from './../../components/swipe'
+import AngleTop from './../../components/AngleTop'
+import AngleBottom from './../../components/AngleBottom'
 import ReactSwipe from 'react-swipe';
 import './index.less'
 import pc1 from './../../components/pc1.jpg'
@@ -41,7 +43,6 @@ export default class HomeContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            winWidth: 0,
             swipeIndex: 0,
             swipeCount: 0,
             swipetitle:'',
@@ -55,20 +56,16 @@ export default class HomeContainer extends React.Component {
         // setTimeout(function () {
         // },2000)
         this.setState({
-            winWidth: document.body.offsetWidth
-        })
-        window.addEventListener('resize', this.resizeWin);
-        this.setState({
             swipeCount: parseInt(this.refs.reactSwipe.getNumSlides())
         })
         // window.addEventListener('mousewheel',this.scrollWin)
         // window.addEventListener('scroll', (e)=>this.scrollWin(e));
     }
     onmousemove=()=>{
-        window.addEventListener('mousewheel',this.scrollWin)
+        // window.addEventListener('mousewheel',this.scrollWin)
     }
     onmouseout=()=>{
-        window.removeEventListener('mousewheel',this.scrollWin)
+        // window.removeEventListener('mousewheel',this.scrollWin)
     }
     scrollWin=(event )=>{
         if(this.refs.reactSwipe){
@@ -98,14 +95,6 @@ export default class HomeContainer extends React.Component {
             }
         }
     }
-    resizeWin = ()=> {
-        this.setState({
-            winWidth: document.body.offsetWidth
-        })
-    }
-    componentWillUnmount = () => {
-        window.removeEventListener('resize', this.resizeWin)
-    };
 
     componentWillMount() {
         // NProgress.start();
@@ -133,10 +122,15 @@ export default class HomeContainer extends React.Component {
 
     render() {
         const that = this;
-        // let dotsArr=[];
-        // for(let i=0;i<this.state.swipeCount;i++){
-        //     dotsArr.push(1)
-        // }
+        let dotsArr=[];
+        for(let i=0;i<this.state.swipeCount;i++){
+            dotsArr.push(1)
+        }
+        const renderDots=dotsArr.map(function (item,index) {
+            return(
+                <li key={index} onClick={()=>that.slide(index)} className={index===that.state.swipeIndex?'dot dot-active':'dot'}></li>
+            )
+        })
         const renderSwipe=this.state.data.map(function (item,index) {
             return (
                 <div key={index}>
@@ -158,12 +152,16 @@ export default class HomeContainer extends React.Component {
                         <div className="control">
                             <div className="control-text">
                                 <ul>
-                                    <li>{this.state.swipeIndex + 1}</li>
+                            {/*        <li>{this.state.swipeIndex + 1}</li>
                                     <li>/</li>
-                                    <li>{this.state.swipeCount}</li>
+                                    <li>{this.state.swipeCount}</li>*/}
                                     <li>{this.state.data[this.state.swipeIndex].title}</li>
                                 </ul>
-
+                            </div>
+                            <div className="control-dots">
+                                <ul>
+                                {renderDots}
+                                </ul>
                             </div>
                             <div className="control-btn">
                                 <span className="pre" onClick={this.prev}></span>
@@ -177,9 +175,9 @@ export default class HomeContainer extends React.Component {
                     <Banner history={this.props.history}/>
                 </div>
                 <PageTtile showLeftLine={true} title='我们的优势'/>
-                <div className="top-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
+                <AngleTop />
                 <Advantage />
-                <div className="bottom-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
+                <AngleBottom />
                 <div className="show-if-mobile">
                     <PageTtile showLeftLine={true} title='辂轺产品分类' desc='让汽车后市场互联互通！'/>
                     <div className="top-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>

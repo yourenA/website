@@ -25,6 +25,7 @@ export default class CategoryInfo extends React.Component {
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
             data: [{
+                slideMinHeight:0,
                 index: 0,
                 image: item5,
                 name: 'EPB电子驻车制动系统',
@@ -45,8 +46,12 @@ export default class CategoryInfo extends React.Component {
     }
 
     componentDidMount() {
+
     }
     showDetail = (index) => {
+        // console.log(this.state.products[index].data.length)
+        // console.log(document.getElementsByClassName('my-gallery-class')[index].getElementsByClassName('detail-item')[0])
+        // console.log(document.getElementsByClassName('my-gallery-class')[index].getElementsByClassName('detail-item')[0].clientWidth)
         this.setState({
             activeIndex:index
         })
@@ -100,7 +105,7 @@ export default class CategoryInfo extends React.Component {
             <div className="categoryInfo-box">
                 <div className="categoryInfo">
                     <div  className="categoryInfo-slider">
-                        <ul>
+                        <ul style={{minHeight:this.state.slideMinHeight+'px'}}>
                             {categoryInfoSlider}
                         </ul>
                     </div>

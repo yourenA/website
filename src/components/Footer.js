@@ -29,8 +29,10 @@ export default class Category extends React.Component {
             clearInterval(this.scrollBottomTimer);
         }
         this.scrollTopTimer = setInterval(function () {
-            const backTop = body.scrollTop;
+            const backTop =document.documentElement.scrollTop || document.body.scrollTop;
+            // console.log('backTop',backTop)
             var speedTop = backTop / 8;
+            document.documentElement.scrollTop=(backTop - speedTop);
             body.scrollTop=(backTop - speedTop);
             if (backTop == 0) {
                 console.log('到达顶部')

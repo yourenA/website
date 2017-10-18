@@ -14,8 +14,8 @@ export default class PageTiyle extends React.Component {
 
     componentDidMount() {
         const that=this;
-        if(that.refs.pageTitle.offsetTop<(document.body.scrollTop+document.body.clientHeight-200)){
-            that.refs.pageTitleContent.className='down'
+        if(that.refs.pageTitle.offsetTop<(document.body.scrollTop+document.body.clientHeight-500)){
+            document.getElementById('pageTitleContent').className='down'
         }
         window.addEventListener('scroll',that.scrollEvent)
     }
@@ -24,8 +24,9 @@ export default class PageTiyle extends React.Component {
         // console.log(that.refs.pageTitle.offsetTop)
         // console.log(document.body.scrollTop)
         // console.log(document.body.clientHeight)
-        if(that.refs.pageTitle.offsetTop<(document.body.scrollTop+document.body.clientHeight-200)){
-            that.refs.pageTitleContent.className='down'
+        if(that.refs.pageTitle.offsetTop<(document.body.scrollTop+document.body.clientHeight-500)){
+            // that.refs.pageTitleContent.className='down';
+            document.getElementById('pageTitleContent').className='down'
         }
     }
     componentWillUnmount=()=>{
@@ -40,7 +41,7 @@ export default class PageTiyle extends React.Component {
                     <h4>AMware</h4>
                 </div>
                 <div className="page-title-desc" >
-                    <p  ref="pageTitleContent" >{this.props.title}</p>
+                    <p  ref="pageTitleContent" id="pageTitleContent" >{this.props.title}</p>
                 </div>
             </div>
         )
