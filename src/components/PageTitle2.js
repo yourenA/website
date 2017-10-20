@@ -14,10 +14,20 @@ export default class PageTiyle extends React.Component {
 
     componentDidMount() {
         const that=this;
-        if(that.refs.pageTitle.offsetTop<(document.body.scrollTop+document.body.clientHeight-500)){
-            document.getElementById('pageTitleContent').className='down'
-        }
-        window.addEventListener('scroll',that.scrollEvent)
+        // if(that.refs.pageTitle.offsetTop<(document.body.scrollTop+document.body.clientHeight-500)){
+        //     document.getElementById('pageTitleContent').className='down'
+        // }
+        // window.addEventListener('scroll',that.scrollEvent)
+        let waypoint = new window.Waypoint({
+            element: document.getElementById('pageTitle'),
+            handler: function(direction) {
+                // console.log(direction)
+                document.getElementById('pageTitleContent').className='down'
+                this.destroy();
+                // notify(this.id + ' hit')
+            },
+            offset: '75%',
+        })
     }
     scrollEvent=()=>{
         const that=this;
@@ -31,11 +41,11 @@ export default class PageTiyle extends React.Component {
     }
     componentWillUnmount=()=>{
         const that=this;
-        window.removeEventListener('scroll',that.scrollEvent)
+        // window.removeEventListener('scroll',that.scrollEvent)
     }
     render() {
         return (
-            <div className="page-title2" ref="pageTitle">
+            <div className="page-title2" id="pageTitle">
                 <div className="logo-line"></div>
                 <div className="title-logo">
                     <h4>AMware</h4>

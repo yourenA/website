@@ -38,6 +38,7 @@
     "swipe-js-iso": "^2.0.4",
     "ua-parser-js": "^0.7.14",
     "uuid": "^3.1.0",
+    "waypoints": "^4.0.1",
     "ws": "^3.0.0"
   },
   "devDependencies": {

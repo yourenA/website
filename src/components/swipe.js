@@ -18,17 +18,19 @@ export default class Swipe extends React.Component {
                 <div className="banner-img">
                     <img src={this.props.data.imageUrl} alt=""/>
                 </div>
-                <div className="banner-desc">
-                    <div >
-                        <p className="company-name">{this.props.data.title}</p>
-                        <p className="company-name-slogan">{this.props.data.desc}</p>
+                <Link to='/'>
+                    <div className="banner-desc">
+                        <div >
+                            <p className="company-name">{this.props.data.title}</p>
+                            <p className="company-name-slogan">{this.props.data.desc}</p>
+                        </div>
+                        <div className="border border-top"></div>
+                        <div className="border border-right"></div>
+                        <div className="border border-bottom"></div>
+                        <div className="border border-left"></div>
                     </div>
-                    <Link to='/'>查看更多</Link>
-                    <div className="border border-top"></div>
-                    <div className="border border-right"></div>
-                    <div className="border border-bottom"></div>
-                    <div className="border border-left"></div>
-                </div>
+                </Link>
+
             </div>
         )
     }

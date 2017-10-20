@@ -43,6 +43,7 @@ export default class HomeContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            hadSwipeIndex:[],
             swipeIndex: 0,
             swipeCount: 0,
             swipetitle:'',
@@ -105,19 +106,40 @@ export default class HomeContainer extends React.Component {
         // this.props.history.push('/')
     }
 
-    prev = ()=> {
+    prev = (index)=> {
         this.refs.reactSwipe.prev();
+        if(this.state.hadSwipeIndex.indexOf(index)<0){
+            this.state.hadSwipeIndex.push(index)
+            this.setState({
+                hadSwipeIndex:this.state.hadSwipeIndex,
+            })
+        }else{
+        }
     }
-    next = ()=> {
+    next = (index)=> {
         this.refs.reactSwipe.next();
+        if(this.state.hadSwipeIndex.indexOf(index)<0){
+            this.state.hadSwipeIndex.push(index)
+            this.setState({
+                hadSwipeIndex:this.state.hadSwipeIndex,
+            })
+        }else{
+        }
     }
     callback = (index, elem)=> {
-        this.setState({
-            swipeIndex: index
-        })
+            this.setState({
+                swipeIndex: index
+            })
     }
     slide = (index)=> {
         this.refs.reactSwipe.slide(index);
+        if(this.state.hadSwipeIndex.indexOf(index)<0){
+            this.state.hadSwipeIndex.push(index)
+            this.setState({
+                hadSwipeIndex:this.state.hadSwipeIndex,
+            })
+        }else{
+        }
     }
 
     render() {
@@ -133,10 +155,9 @@ export default class HomeContainer extends React.Component {
         })
         const renderSwipe=this.state.data.map(function (item,index) {
             return (
-                <div key={index}>
+                <div key={index} className={(that.state.swipeIndex === index )? "swipe-active":""}>
                     <Swipe  data={item}/>
                 </div>
-
             )
         })
         return (
@@ -164,8 +185,8 @@ export default class HomeContainer extends React.Component {
                                 </ul>
                             </div>
                             <div className="control-btn">
-                                <span className="pre" onClick={this.prev}></span>
-                                <span className="next" onClick={this.next}></span>
+                                <span className="pre" onClick={()=>this.prev(this.state.swipeIndex)}></span>
+                                <span className="next" onClick={()=>this.next(this.state.swipeIndex)}></span>
                             </div>
 
                         </div>

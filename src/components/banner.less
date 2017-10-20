@@ -119,50 +119,52 @@
       color:#fff;
       background: #0b2749;
     }
-    .border{
-      position: absolute;
-      background: #ffffff;
-      @media (max-width: @small-media){
-        display: none;
-      }
-      &.border-top{
-        left: 0;
-        top: 0;
-        height: 1px;
-        width: 100%;
-        animation: borderTop 0.3s ease ;
-        animation-fill-mode:forwards;
-      }
-      &.border-right{
-        right: 0;
-        top: -100%;
-        width:1px;
-        height: 100%;
-        animation: borderRight 0.7s ease 0.3s;
-        animation-fill-mode:forwards;
-      }
-      &.border-bottom{
-        left: 100%;
-        bottom: 0;
-        width: 100%;
-        height: 1px;
 
-        animation: borderBottom 0.3s ease 1s;
-        animation-fill-mode:forwards;
-      }
-      &.border-left{
-        left: 0;
-        top: 100%;
-        width: 1px;
-        height: 100%;
-        animation: borderLeft 0.7s ease 1.3s;
-        animation-fill-mode:forwards;
-      }
 
-    }
   }
 }
+.swipe-active{
+  .border{
+    position: absolute;
+    background: #ffffff;
+    @media (max-width: @small-media){
+      display: none;
+    }
+    &.border-top{
+      left: 0;
+      top: 0;
+      height: 1px;
+      width: 100%;
+      animation: borderTop 0.3s ease ;
+      animation-fill-mode:forwards;
+    }
+    &.border-right{
+      right: 0;
+      top: -100%;
+      width:1px;
+      height: 100%;
+      animation: borderRight 0.7s ease 0.3s;
+      animation-fill-mode:forwards;
+    }
+    &.border-bottom{
+      left: 100%;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      animation: borderBottom 0.3s ease 1s;
+      animation-fill-mode:forwards;
+    }
+    &.border-left{
+      left: 0;
+      top: 100%;
+      width: 1px;
+      height: 100%;
+      animation: borderLeft 0.7s ease 1.3s;
+      animation-fill-mode:forwards;
+    }
 
+  }
+}
 @keyframes borderTop {
   0%{
     left: -100%;
