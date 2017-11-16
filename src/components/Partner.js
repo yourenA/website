@@ -7,6 +7,10 @@ import Nav from './Nav'
 import Footer from './Footer'
 import AngleTop from './AngleTop'
 import AngleBottom from './AngleBottom'
+import axios from 'axios'
+import configJson from 'configJson' ;
+import city from './city.json'
+import groupBy from 'lodash/groupBy';
 export default class Partner extends React.Component {
 
     constructor(props) {
@@ -17,34 +21,45 @@ export default class Partner extends React.Component {
     }
 
     componentDidMount() {
+        this.getInfo()
 
+
+    }
+
+    getInfo = ()=> {
+        const that = this;
+        axios({
+            url: `${configJson.prefix}/partner`,
+            method: 'get',
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.status === 200) {
+                    that.setState({
+                        data: response.data.data
+                    }, function () {
+                        that.renderMap();
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+
+    }
+    renderMap = ()=> {
         var myChart = window.echarts.init(document.querySelector('.map'));
-
         // 指定图表的配置项和数据
-        var geoCoordMap = { //"海门":[121.15,31.89] 地点:经纬度
-            "海门": [121.15, 31.89],
-            "鄂尔多斯": [109.781327, 39.608266],
-            "招远": [120.38, 37.35],
-            "舟山": [122.207216, 29.985295],
-            "齐齐哈尔": [123.97, 47.33],
-            "盐城": [120.13, 33.38],
-            "赤峰": [118.87, 42.28],
-            "青岛": [120.33, 36.07],
-            "乳山": [121.52, 36.89],
-            "金昌": [102.188043, 38.520089],
-            "泉州": [118.58, 24.93],
-            "莱西": [120.53, 36.86],
-            "广州": [113.23, 23.16],
-        };
-        var data = [
-            {name: "海门", value: "xxxx公司"},
-            {name: "舟山", value: "xxxx公司"},
-            {name: "齐齐哈尔", value: "xxxx公司"},
-            {name: "盐城", value: "xxxx公司"},
-            {name: "青岛", value: "xxxx公司"},
-            {name: "广州", value: "xxxx公司,xxxxx公司"},
-            {name: "泉州", value: "xxxx公司"},
-        ]
+        var geoCoordMap = city
+        var data = [];
+        const groupData = groupBy(this.state.data, 'city');
+        for (let key in groupData) {
+            let itemObj={name: key,value:''};
+            for(let i=0;i<groupData[key].length;i++){
+                itemObj.value+=(groupData[key][i].name+',')
+            }
+            data.push(itemObj)
+        }
         var convertData = function (data) {
             var res = [];
             for (var i = 0; i < data.length; i++) {
@@ -58,9 +73,13 @@ export default class Partner extends React.Component {
             }
             return res;
         };
-
         var option = {
             backgroundColor: '#F6F7F0',
+            title: {
+                text: '主要分布省份',
+                bottom: 0,
+                left: '14%'
+            },
             grid: [{x: '5%', y2: '7%', width: '30%', height: '38%',},//左下角
             ],
             tooltip: {
@@ -142,7 +161,7 @@ export default class Partner extends React.Component {
                     tooltip: {
                         trigger: 'item',
                         formatter: function (params) {
-                            return params.name + ' <br/> ' + params.value[2].split(',').join('<br/>n');
+                            return params.name + ' <br/> ' + params.value[2].split(',').join('<br/>');
                         }
                     }
                 },
@@ -168,7 +187,7 @@ export default class Partner extends React.Component {
                     tooltip: {
                         trigger: 'item',
                         formatter: function (params) {
-                            return params.name + ' <br/> ' + params.value[2].split(',').join('<br/>n');
+                            return params.name + ' <br/> ' + params.value[2].split(',').join('<br/>');
                         }
                     }
                 }, {

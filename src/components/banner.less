@@ -39,13 +39,14 @@
   }
   .banner-desc{
     position: absolute;
-    top: 50%;
+    bottom: 100px;
     transform: translate(0,-50%);
     right: 100px;
     color:#ffffff;
     padding: 10px;
     font-size: 0;
     overflow: hidden;
+    width: 30%;
     background: rgba(0,0,0,.4);
     @media (max-width: @small-media){
       transform: none;
@@ -58,10 +59,12 @@
         font-size: 20px;
       }
       &.company-name{
-        width: 20px;
-        vertical-align: top;
-        display: inline-block;
-        margin-left: 20px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        margin:  10px;
         @media (max-width: @small-media){
           width: auto;
           margin-left: 0;
@@ -77,9 +80,9 @@
       }
       &.company-name-slogan{
         display: inline-block;
-        width: 22px;
-        font-size: 20px;
-        margin: 30px 20px;
+        font-size: 16px;
+        margin: 0 10px 10px;
+        line-height: 1.5;
         @media (max-width: @small-media){
           display: block;
           font-size: 16px;

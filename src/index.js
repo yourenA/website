@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import './index.less';
+import axios from 'axios';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+const store = configureStore();
+axios.defaults.withCredentials = true;
 const render = Component =>
     ReactDOM.render(
+        <Provider store={store}>
             <Component />
+        </Provider>
         ,
         document.getElementById('root')
     );

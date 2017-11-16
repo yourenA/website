@@ -8,6 +8,9 @@ import Nav from './Nav'
 import Footer from './Footer'
 import adatar from './../image/avatar.png'
 import './news.less'
+import axios from 'axios'
+import configJson from 'configJson' ;
+import moment from 'moment'
 export default class News extends React.Component {
 
     constructor(props) {
@@ -15,30 +18,44 @@ export default class News extends React.Component {
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
-            data: [{
-                image: 'http://img.weiot.net/portal/201401/29/200809um073mx02zoxdk7p.gif',
-                desc: '这是简要新闻，包含一张图片，描述文字字数限制在140以内,描述文字字数限制在140以内,描述文字字数限制在140以内,描述文字字数限制在140以内，描述文字字数限制在140以内,描述文字字数限制在140以内,描述文字字数限制在140以内,描述文字字数限制在140以内.'
-            },
-                {image: 'http://f12.baidu.com/it/u=1505322598,1727959990&fm=72 ', desc: '这是简要新闻，包含一张图片，描述文字字数限制在140以内'},
-                {image: 'http://f12.baidu.com/it/u=1505322598,1727959990&fm=72', desc: '这是简要新闻，包含一张图片，描述文字字数限制在140以内'},
-                {image: 'http://f12.baidu.com/it/u=1505322598,1727959990&fm=72', desc: '这是简要新闻，包含一张图片，描述文字字数限制在140以内'},
-                {image: 'http://f12.baidu.com/it/u=1505322598,1727959990&fm=72', desc: '这是简要新闻，包含一张图片，描述文字字数限制在140以内'},]
+            data:[]
         }
     }
 
     componentDidMount() {
+        this.getInfo()
     }
+    getInfo = ()=> {
+        const that = this;
+        axios({
+            url: `${configJson.prefix}/introduction`,
+            method: 'get',
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.status === 200) {
+                    that.setState({
+                        data: response.data.data.rows
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
 
+    }
     render() {
-        const renderNews = this.state.data.map(function (item, index) {
+        console.log(this.state)
+        const renderNews = this.state.data.reverse().map(function (item, index) {
             return (
                 <li key={index}>
                     <div className="avatar">
                         <div className="avatar-img"><img src={adatar} alt=""/></div>
                     </div>
                     <div className="content">
-                        <div className="desc">{item.desc}</div>
-                        <div className="image"><img src={item.image} alt=""/></div>
+                        <div className="desc">{item.description}</div>
+                        <div className="image"><img src={`${configJson.prefix}${item.imageUrl}`} alt=""/></div>
+                        <div className="date">{moment(item.createdAt).format("YYYY-MM-DD HH:mm")}</div>
                     </div>
                 </li>
             )

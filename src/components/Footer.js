@@ -2,11 +2,9 @@
  * Created by Administrator on 2017/9/13.
  */
 import React from 'react'
-import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 import './footer.less'
-import ColorLine from './../containers/products/ColorLine'
-export default class Category extends React.Component {
+import {connect} from 'react-redux';
+ class Footer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -41,6 +39,7 @@ export default class Category extends React.Component {
         }, 20);
     }
     render() {
+        const {info}=this.props;
         return (
             <div className="footer">
                 <div className="footer-container">
@@ -48,8 +47,7 @@ export default class Category extends React.Component {
                     <div className="footer-category">
                         <h3> <i className="fa fa-home" aria-hidden="true"></i>关于我们  </h3>
                         <div className="category-content">
-                            广州辂轺信息科技2013年成立于广州,是一家专注于汽车ECU（电子控制单元）产品开发的科技企业。
-                            依托于自行开发的AUTOSAR汽车软件架构和OSEK实时操作系统，凭借自身多年的技术积累，为广大客户提供各种ECU解决方案和产品。
+                            {info.description}
                         </div>
                     </div>
                     <div className="footer-category">
@@ -57,16 +55,16 @@ export default class Category extends React.Component {
                         <div className="category-content">
                             <ul>
                                 <li>
-                                    地址：广州市天河区天河东路242号601室
+                                    地址： {info.address}
                                 </li>
                                 <li>
-                                    电话：+86 020 87519370
+                                    电话： {info.tel}
                                 </li>
                                 <li>
-                                    传真：+86 020 85262282
+                                    传真： {info.fax}
                                 </li>
                                 <li>
-                                    电邮：info@amwares.com
+                                    电邮： {info.email}
                                 </li>
                             </ul>
                         </div>
@@ -75,28 +73,29 @@ export default class Category extends React.Component {
                         <h3><i className="fa fa-link" aria-hidden="true"></i>友情链接  </h3>
                         <div className="category-content">
                             <ul>
-                                <li>
-                                    <a target="_blank" href="">XXXXXX科技有限公司</a>
-                                </li>
-                                <li>
-                                    <a target="_blank" href="">XXXXXX科技有限公司</a>
-                                </li>
-                                <li>
-                                    <a  target="_blank" href="">XXXXXX科技有限公司</a>
-                                </li>
-                                <li>
-                                    <a  target="_blank" href="">XXXXXX科技有限公司</a>
-                                </li>
+                                {
+                                    info.link.map(function (item,index) {
+                                        return (
+                                            <li key={index}>
+                                                <a href={item.url} target="_blank" >{item.name}</a>
+                                            </li>
+                                        )
+                                    })
+                                }
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div className="copyright">
-                    © 2014-2017 广州辂轺信息科技有限公司 版权所有
+                    {info.copyright}
                 </div>
             </div>
         )
     }
 }
-Category.propTypes = {
+function mapStateToProps(state) {
+    return {
+        info: state.info,
+    };
 }
+export default connect(mapStateToProps)(Footer);

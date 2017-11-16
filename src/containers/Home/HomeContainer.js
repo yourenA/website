@@ -25,18 +25,8 @@ import AngleTop from './../../components/AngleTop'
 import AngleBottom from './../../components/AngleBottom'
 import ReactSwipe from 'react-swipe';
 import './index.less'
-import pc1 from './../../components/pc1.jpg'
-import pc2 from './../../image/1.jpg'
-import pc3 from './../../image/3.jpg'
-import Left from'./../../image/left.png'
-import Right from'./../../image/right.png'
-// import Header from 'components/Home/Header'
-// import Nav from 'components/Home/Nav'
-// import Special from 'components/Home/Special'
-// import BookList from 'components/Home/BookList'
-
-// import NProgress from 'nprogress';
-// import 'nprogress/nprogress.css'
+import axios from 'axios'
+import configJson from 'configJson' ;
 let canSwipt=true;
 export default class HomeContainer extends React.Component {
 
@@ -47,7 +37,7 @@ export default class HomeContainer extends React.Component {
             swipeIndex: 0,
             swipeCount: 0,
             swipetitle:'',
-            data:[{imageUrl:pc1,title:'辂轺科技',desc:'专注于汽车电子控制单元产品开发'},{imageUrl:pc2,title:'辂轺产品',desc:'专注于汽车电子控制单'},{imageUrl:pc3,title:'辂轺科技3',desc:'专注于汽车电专注于汽车电子控制单元产品开发'}]
+            data:[]
         }
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
@@ -56,11 +46,33 @@ export default class HomeContainer extends React.Component {
     componentDidMount = ()=> {
         // setTimeout(function () {
         // },2000)
-        this.setState({
-            swipeCount: parseInt(this.refs.reactSwipe.getNumSlides())
-        })
+
+        this.getInfo()
         // window.addEventListener('mousewheel',this.scrollWin)
         // window.addEventListener('scroll', (e)=>this.scrollWin(e));
+    }
+    getInfo = ()=> {
+        const that = this;
+        axios({
+            url: `${configJson.prefix}/slideShow`,
+            method: 'get',
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.status === 200) {
+                    that.setState({
+                        data: response.data.data
+                    },function () {
+                        that.setState({
+                            swipeCount:  response.data.data.length
+                        })
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+
     }
     onmousemove=()=>{
         // window.addEventListener('mousewheel',this.scrollWin)
@@ -143,6 +155,7 @@ export default class HomeContainer extends React.Component {
     }
 
     render() {
+        console.log('this.state',this.state)
         const that = this;
         let dotsArr=[];
         for(let i=0;i<this.state.swipeCount;i++){
@@ -164,24 +177,17 @@ export default class HomeContainer extends React.Component {
             <div className="container">
                 <Nav history={this.props.history}/>
                 <div className="show-if-pc">
-                    <div className="carousel-box" ref="carousel" onMouseEnter={this.onmousemove} onMouseLeave={this.onmouseout}>
+                    {this.state.data.length>0?
+                        <div className="carousel-box" ref="carousel" onMouseEnter={this.onmousemove} onMouseLeave={this.onmouseout}>
                         <ReactSwipe className="carousel" ref="reactSwipe" swipeOptions={{continuous: false,callback: this.callback}}>
                             {
                                 renderSwipe
                             }
                         </ReactSwipe>
                         <div className="control">
-                            <div className="control-text">
-                                <ul>
-                            {/*        <li>{this.state.swipeIndex + 1}</li>
-                                    <li>/</li>
-                                    <li>{this.state.swipeCount}</li>*/}
-                                    <li>{this.state.data[this.state.swipeIndex].title}</li>
-                                </ul>
-                            </div>
                             <div className="control-dots">
                                 <ul>
-                                {renderDots}
+                                    {renderDots}
                                 </ul>
                             </div>
                             <div className="control-btn">
@@ -190,7 +196,8 @@ export default class HomeContainer extends React.Component {
                             </div>
 
                         </div>
-                    </div>
+                    </div>:<div></div>}
+
                 </div>
                 <div className="show-if-mobile">
                     <Banner history={this.props.history}/>

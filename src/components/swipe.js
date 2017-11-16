@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import {Link} from 'react-router-dom'
+import configJson from 'configJson' ;
 export default class Swipe extends React.Component {
 
     constructor(props) {
@@ -16,13 +17,13 @@ export default class Swipe extends React.Component {
         return (
             <div className="banner">
                 <div className="banner-img">
-                    <img src={this.props.data.imageUrl} alt=""/>
+                    <img src={`${configJson.prefix}${this.props.data.slideshowUrl}`} alt=""/>
                 </div>
                 <Link to='/'>
                     <div className="banner-desc">
                         <div >
                             <p className="company-name">{this.props.data.title}</p>
-                            <p className="company-name-slogan">{this.props.data.desc}</p>
+                            <p className="company-name-slogan">{this.props.data.description}</p>
                         </div>
                         <div className="border border-top"></div>
                         <div className="border border-right"></div>

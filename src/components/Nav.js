@@ -2,11 +2,10 @@
  * Created by Administrator on 2017/9/13.
  */
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux';
 import './nav.less'
-import Logo from './../image/wiki.png'
-export default class Nav extends React.Component {
+ class Nav extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,9 +16,9 @@ export default class Nav extends React.Component {
         }
     }
 
-    componentDidMount() {
-    }
+    componentDidMount = ()=> {
 
+    }
     showMobileMenu = ()=> {
         this.setState({
             showMobileMenu: !this.state.showMobileMenu
@@ -29,6 +28,7 @@ export default class Nav extends React.Component {
         this.props.history.push('/search');
     }
     render() {
+       const {info}=this.props;
         const renderTopLine=[1,1,1,1,1,1,1,1,1,1,1,1].map(function (item,index) {
             return(
                 <li key={index}></li>
@@ -51,7 +51,7 @@ export default class Nav extends React.Component {
                     </ul>
                 </div>
                 <div className="center">
-                    <Link to='/'><img src={Logo} alt=""/><h1>广州辂轺信息科技有限公司</h1></Link>
+                    <Link to='/'><img src={info.logoUrl} alt=""/><h1>{info.name}</h1></Link>
                 </div>
                 <div className="right">
                     <ul>
@@ -86,5 +86,10 @@ export default class Nav extends React.Component {
         )
     }
 }
-Nav.propTypes = {
+
+function mapStateToProps(state) {
+    return {
+        info: state.info,
+    };
 }
+export default connect(mapStateToProps)(Nav);

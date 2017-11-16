@@ -12,24 +12,41 @@ import pc2 from './../../image/1.jpg'
 import pc3 from './../../image/2.jpg'
 import pc4 from './../../image/5.jpg'
 import './productDetail.less'
+import axios from 'axios'
+import configJson from 'configJson' ;
 export default class ProductDetail extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             gallery: null,
-            data:[{title:'空调控制ECU',desc:'该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。',image:pc1},
-                {title:'空调控制ECU',desc:'该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。',image:pc2},
-                {title:'空调控制ECU',desc:'该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。',image:pc3},
-                {title:'空调控制ECU',desc:'该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。',image:pc4},
-                {title:'空调控制ECU',desc:'该产品能够完美替代原厂TOYOTA的相关空调控制ECU产品，实现对压缩机、空调控制面板、蒸发器、电机等的整个空调系统的控制。',image:pc4}]
+            data:[]
         }
 
     }
     componentDidMount=()=>{
-
+        this.getInfo()
         this.loadImg();
         window.onscroll=this.loadImg
+    }
+    getInfo = ()=> {
+        const that = this;
+        axios({
+            url: `${configJson.prefix}/content/${this.props.match.params.id}/1`,
+            method: 'get',
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.status === 200) {
+                    that.setState({
+                        data: response.data.data.rows
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+
     }
     loadImg=()=>{
         let items=document.querySelectorAll('.detail-item');
@@ -64,7 +81,7 @@ export default class ProductDetail extends React.Component {
         ];
         for(let i=0,len=this.state.data.length;i<len;i++){
             items.push({
-                src: this.state.data[i].image,
+                src: `${configJson.prefix}${this.state.data[i].contentUrl}`,
                 w: 0,
                 h: 0,
             })
@@ -89,12 +106,13 @@ export default class ProductDetail extends React.Component {
         this.gallery.init();
     };
     render() {
+        console.log(this.state)
         const that=this;
         const renderDetail=this.state.data.map(function (item,index) {
                 return (
                     <div key={index} className="detail-item">
                         <div className="detail-item-img" onClick={() => that.openGallery(index)}>
-                            <img data-src={item.image} src="" alt=""/>
+                            <img data-src={`${configJson.prefix}${item.contentUrl}`} src="" alt=""/>
                             <div className="show-big-image">
                                 <span  >查看大图</span>
                             </div>
@@ -102,7 +120,7 @@ export default class ProductDetail extends React.Component {
                         <div className="detail-item-desc">
                             <div>
                                 <h3>{item.title}</h3>
-                                <p> {item.desc}</p>
+                                <p> {item.description}</p>
                             </div>
                         </div>
                     </div>
@@ -122,7 +140,6 @@ export default class ProductDetail extends React.Component {
                             <div className="pswp__item" />
                             <div className="pswp__item" />
                         </div>
-
                         <div className="pswp__ui pswp__ui--hidden">
 
                             <div className="pswp__top-bar">
@@ -143,23 +160,17 @@ export default class ProductDetail extends React.Component {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
                                 <div className="pswp__share-tooltip" />
                             </div>
-
                             <button className="pswp__button pswp__button--arrow--left" title="Previous (arrow left)" />
-
                             <button className="pswp__button pswp__button--arrow--right" title="Next (arrow right)" />
 
                             <div className="pswp__caption">
                                 <div className="pswp__caption__center" />
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
 
             </div>

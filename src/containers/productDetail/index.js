@@ -26,7 +26,7 @@ export default class ProductDetail extends React.Component {
                 <PageHeader bgSrc={pc1}/>
                 <PageTtile title='AMAX-TC1' desc=''/>
                 <div className="max-width">
-                    <Detail />
+                    <Detail match={match}/>
                 </div>
                 <Footer />
             </div>
