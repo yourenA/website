@@ -4,6 +4,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import configJson from 'configJson' ;
+import './banner.less'
 export default class Swipe extends React.Component {
 
     constructor(props) {

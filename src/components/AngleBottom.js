@@ -15,7 +15,7 @@ export default class AngleTop extends React.Component {
 
     componentDidMount = ()=> {
         this.setState({
-            winWidth: document.body.offsetWidth - 17
+            winWidth: document.body.offsetWidth
         })
         window.addEventListener('resize', this.resizeWin);
     }
@@ -24,6 +24,7 @@ export default class AngleTop extends React.Component {
         window.removeEventListener('resize', this.resizeWin)
     };
     resizeWin = ()=> {
+        console.log('resizeWin')
         this.setState({
             winWidth: document.body.offsetWidth
         })

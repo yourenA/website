@@ -55,6 +55,11 @@ const Search = asyncComponent(() =>
 import
 (/* webpackChunkName: "search" */ "./containers/Search/SearchContainer")
 )
+
+const NoFound = asyncComponent(() =>
+import
+(/* webpackChunkName: "nofound" */ "./containers/NoFound/index")
+)
 class App extends React.Component {
     constructor(props) {
         super(props);

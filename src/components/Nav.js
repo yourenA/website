@@ -5,7 +5,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 import './nav.less'
- class Nav extends React.Component {
+class Nav extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,13 +24,29 @@ import './nav.less'
             showMobileMenu: !this.state.showMobileMenu
         })
     }
-    showMobileSearch=()=>{
+    showMobileSearch = ()=> {
         this.props.history.push('/search');
     }
+    showSearch = ()=> {
+        if (this.state.active) {
+            return false
+        }
+        this.setState({
+            active: true
+        })
+        const search = document.querySelector('#search');
+        search.focus()
+    }
+    hideSearch = ()=> {
+        this.setState({
+            active: false
+        })
+    }
+
     render() {
-       const {info}=this.props;
-        const renderTopLine=[1,1,1,1,1,1,1,1,1,1,1,1].map(function (item,index) {
-            return(
+        const {info}=this.props;
+        const renderTopLine = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(function (item, index) {
+            return (
                 <li key={index}></li>
             )
         })
@@ -46,8 +62,8 @@ import './nav.less'
 
                         <li><Link to='/contact'>联系我们</Link></li>
                         <li><Link to='/partner'>合作伙伴</Link></li>
-                  {/*      <li><Link to='/products'>前瞻技术</Link></li>
-                        <li><Link to='/products'>我们的团队</Link></li>*/}
+                        {/*      <li><Link to='/products'>前瞻技术</Link></li>
+                         <li><Link to='/products'>我们的团队</Link></li>*/}
                     </ul>
                 </div>
                 <div className="center">
@@ -55,24 +71,23 @@ import './nav.less'
                 </div>
                 <div className="right">
                     <ul>
-
-
                     </ul>
                 </div>
-                <div className="search-Placeholder">
-                    <input placeholder="输入搜索内容"/>
-                    <i className="fa fa-search" aria-hidden="true"></i></div>
                 <div className="mobile-menu-icon" onClick={this.showMobileMenu}>
-                    <span style={{left: this.state.showMobileMenu ? '-50px' : '0'}}>
+                    <span style={{left: '0'}}>
                         <i className="fa fa-bars"></i>
-                        <i className="fa fa-times"></i>
                     </span>
                 </div>
-                <div className="mobile-menu-icon" onClick={this.showMobileSearch}>
-                    <i className="fa fa-search"></i>
-                </div>
+                <div className="search-Placeholder">
+                    <input className={this.state.active ? 'active' : ''} placeholder="输入搜索内容" id="search"/>
+                    {this.state.active ? <i className="fa fa-close" aria-hidden="true" onClick={this.hideSearch}></i> :
+                        <i className="fa fa-search" aria-hidden="true" onClick={this.showSearch}></i>}</div>
 
-                <div
+                {/*<div className="mobile-menu-icon" onClick={this.showMobileSearch}>*/}
+                    {/*<i className="fa fa-search"></i>*/}
+                {/*</div>*/}
+
+                <div onClick={this.showMobileMenu}
                     className={this.state.showMobileMenu ? "mobile-menu show-mobile-menu" : "mobile-menu hide-mobile-menu"}>
                     <ul>
                         <li><Link to='/products'>产品与服务</Link></li>

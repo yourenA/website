@@ -12,7 +12,6 @@ import PropTypes from 'prop-types'
 
 /*component*/
 import Nav from './../../components/Nav'
-import Banner from './../../components/Banner'
 import Category from './../../components/Category'
 import Partner from './../../components/Partner'
 import Footer from './../../components/Footer'
@@ -176,7 +175,6 @@ export default class HomeContainer extends React.Component {
         return (
             <div className="container">
                 <Nav history={this.props.history}/>
-                <div className="show-if-pc">
                     {this.state.data.length>0?
                         <div className="carousel-box" ref="carousel" onMouseEnter={this.onmousemove} onMouseLeave={this.onmouseout}>
                         <ReactSwipe className="carousel" ref="reactSwipe" swipeOptions={{continuous: false,callback: this.callback}}>
@@ -198,29 +196,14 @@ export default class HomeContainer extends React.Component {
                         </div>
                     </div>:<div></div>}
 
-                </div>
-                <div className="show-if-mobile">
-                    <Banner history={this.props.history}/>
-                </div>
                 <PageTtile showLeftLine={true} title='我们的优势'/>
                 <AngleTop />
                 <Advantage />
                 <AngleBottom />
                 <div className="show-if-mobile">
                     <PageTtile showLeftLine={true} title='辂轺产品分类' desc='让汽车后市场互联互通！'/>
-                    <div className="top-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
                     <Category showAll={false} history={this.props.history}/>
-                    <div className="bottom-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
-                    <PageTtile showLeftLine={true} title='辂轺热门产品'/>
-                    <div className="top-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
-                    <HotProduct/>
-                    <div className="bottom-angle" style={{borderRightWidth: this.state.winWidth + "px"}}></div>
                 </div>
-              {/*  <PageTtile showLeftLine={true} title='辂轺最新简闻'/>
-                <News />
-
-                <PageTtile showLeftLine={true} title='辂轺合作伙伴' desc=''/>
-                <Partner  />*/}
                 <Footer />
             </div>
         )

@@ -77,6 +77,9 @@ nav {
         line-height: @nav-height - @top-line-height;
         display: inline-block;
         padding: 0 15px;
+        @media (max-width: @middle-media) {
+          padding: 0 5px;
+        }
         a {
           display: inline-block;
           width: 100%;
@@ -93,26 +96,33 @@ nav {
   .search-Placeholder{
     float: right;
     display: inline-block;
-    width: 180px;
+    width: 250px;
     margin: 20px 0;
     line-height:  calc(~'@{nav-height} - @{top-line-height} - 40px');
     position: relative;
     input{
       display: inline-block;
       border: none;
-      border-bottom: 1px solid #ccc;
       font-size: 14px;
       color: #333;
       outline: none;
-      padding: 5px;
+      padding: 7px;
       padding-right: 30px;
-      width: 180px;
-      @media (max-width: @small-media) {
-        width: 150px;
+      transition: all 0.3s;
+      &.active{
+        padding: 7px;
+        padding-right: 30px;
+        width: 250px;
+        border-bottom: 1px solid #ccc;
+        @media (max-width: @small-media) {
+          //display: none;
+          width: 150px;
+        }
       }
+      width: 0;
     }
     @media (max-width: @small-media) {
-      display: none;
+      //display: none;
       width: 150px;
       margin: 27px 0;
       line-height: calc(~'@{nav-height-mobile} -@{top-line-height} - 55px');
@@ -120,10 +130,9 @@ nav {
     i{
       cursor: pointer;
       color: #333;
-      font-size: 18px;
+      font-size: 30px;
       position: absolute;
       right: 0;
-      top: 3px;
     }
   }
   .left {
@@ -180,13 +189,13 @@ nav {
     color:#555;
     span{
       display: inline-block;
-      width: 200%;
+      width: 100%;
       left:0;
       transition: all 0.3s;
       position: absolute;
       i{
         display: inline-block;
-        width: 50%;
+        width: 100%;
       }
     }
     @media (max-width: @small-media) {
