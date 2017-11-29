@@ -2,7 +2,6 @@
  * Created by Administrator on 2017/9/13.
  */
 import React from 'react'
-import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import Masonry from 'react-masonry-component';
 import './categoryInfeo.less'
@@ -19,14 +18,23 @@ export default class CategoryInfo extends React.Component {
             data: [],
             tempData: [],
             products: [],
-            activeIndex: 0
+            activeIndex: 0,
+            query:this.GetQueryString('q')
         }
     }
 
     componentDidMount() {
         this.getInfo()
+        console.log(this.state.query)
     }
-
+    GetQueryString=(name)=>{
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = this.props.history.location.search.substr(1).match(reg);
+        if(r!=null){
+            return  unescape(r[2]);
+        }
+        return r
+    }
     getInfo = ()=> {
         const that = this;
         axios({
@@ -40,7 +48,12 @@ export default class CategoryInfo extends React.Component {
                         data: response.data.data.rows
                     },function () {
                         if(response.data.data.rows.length>0){
-                            that.showDetail(response.data.data.rows[0].id)
+                            if(this.state.query){
+                                that.showDetail(parseInt(this.state.query))
+                            }else{
+                                that.showDetail(response.data.data.rows[0].id)
+
+                            }
                         }
                     })
                 }
@@ -78,6 +91,7 @@ export default class CategoryInfo extends React.Component {
             transitionDuration: 0
         };
         const categoryInfoSlider = this.state.data.map(function (item, index) {
+
             return (
                 <li key={index} onClick={()=>that.showDetail(item.id)}
                     className={item.id === that.state.activeIndex ? "active" : ""}>
@@ -86,6 +100,7 @@ export default class CategoryInfo extends React.Component {
             )
         })
         const categoryInfoContent = this.state.products.map(function (item, index) {
+            console.log('item',item)
             return (
                 <div className="detail-item" key={index}>
                     <div  >

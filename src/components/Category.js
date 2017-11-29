@@ -36,21 +36,6 @@ export default class Category extends React.Component {
         this.props.history.push('/')
     }
     showCategoryDetail=(index)=>{
-        // const ulW=document.querySelector('.category-ul').clientWidth;
-        // const liW=document.querySelectorAll('.category-ul .category-item')[index].clientWidth
-        // const line=Math.ceil((index+1)/parseInt((ulW/liW).toFixed()))
-        // const insertIndex=parseInt((ulW/liW).toFixed())*line
-        // const data=[...this.state.data];
-        // for(let i=0,len=this.state.data.length;i<len;i++){
-        //     if(this.state.data[i].active){
-        //         delete this.state.data[i].active
-        //     }
-        // }
-        // this.state.data[index].active=true
-        // data.splice(insertIndex,0,{type:'detail',category:'EPB电子驻车制动系统',products:[{name:'产品1',desc:Date.now()},{name:'产品1',desc:'产品1描述'},{name:'产品1',desc:'产品1描述'}]})
-        // this.setState({
-        //     tempData:data
-        // })
     }
     render() {
         const that=this;

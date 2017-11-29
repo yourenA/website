@@ -202,6 +202,7 @@ export default class HomeContainer extends React.Component {
                 <AngleBottom />
                 <div className="show-if-mobile">
                     <PageTtile showLeftLine={true} title='辂轺产品分类' desc='让汽车后市场互联互通！'/>
+                    <AngleTop />
                     <Category showAll={false} history={this.props.history}/>
                 </div>
                 <Footer />

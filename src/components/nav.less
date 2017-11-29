@@ -96,43 +96,61 @@ nav {
   .search-Placeholder{
     float: right;
     display: inline-block;
-    width: 250px;
-    margin: 20px 0;
-    line-height:  calc(~'@{nav-height} - @{top-line-height} - 40px');
+    width: 280px;
+    margin: 10px 0;
+    line-height:  calc(~'@{nav-height} - @{top-line-height} - 20px');
     position: relative;
-    input{
-      display: inline-block;
-      border: none;
-      font-size: 14px;
-      color: #333;
-      outline: none;
-      padding: 7px;
-      padding-right: 30px;
-      transition: all 0.3s;
-      &.active{
-        padding: 7px;
+    overflow: hidden;
+    height: calc(~'@{nav-height} - @{top-line-height} - 20px');
+    @media (max-width: @small-media) {
+      display: none;
+    }
+    .search-wrap{
+      position: absolute;
+      left: 100%;
+      width: 280px;
+      @media (max-width: @small-media) {
+        width: 150px;
+      }
+      select{
+        width: 80px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        color: #333;
+        outline: none;
+        padding: 4px 1px 4px 3px;
+        @media (max-width: @small-media) {
+          width: 60px;
+        }
+      }
+      input{
+        border: none;
+        font-size: 14px;
+        color: #333;
+        outline: none;
+        padding: 6px;
         padding-right: 30px;
-        width: 250px;
+        width: 200px;
         border-bottom: 1px solid #ccc;
         @media (max-width: @small-media) {
-          //display: none;
+          width: 90px;
+        }
+      }
+
+      &.active{
+        left: 0;
+        @media (max-width: @small-media) {
           width: 150px;
         }
       }
-      width: 0;
-    }
-    @media (max-width: @small-media) {
-      //display: none;
-      width: 150px;
-      margin: 27px 0;
-      line-height: calc(~'@{nav-height-mobile} -@{top-line-height} - 55px');
     }
     i{
       cursor: pointer;
-      color: #333;
-      font-size: 30px;
+      color:#584f4f;
+      font-size: 26px;
       position: absolute;
       right: 0;
+      top: 10px;
     }
   }
   .left {

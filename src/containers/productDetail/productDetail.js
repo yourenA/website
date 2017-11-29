@@ -2,15 +2,10 @@
  * Created by Administrator on 2016/7/1.
  */
 import React from 'react'
-import PropTypes from 'prop-types';
 import PhotoSwipe from 'photoswipe';
 import PhotoswipeUIDefault from 'photoswipe/dist/photoswipe-ui-default';
 import 'photoswipe/dist/photoswipe.css';
 import 'photoswipe/dist/default-skin/default-skin.css';
-import pc1 from './../../image/3.jpg'
-import pc2 from './../../image/1.jpg'
-import pc3 from './../../image/2.jpg'
-import pc4 from './../../image/5.jpg'
 import './productDetail.less'
 import axios from 'axios'
 import configJson from 'configJson' ;
@@ -32,7 +27,7 @@ export default class ProductDetail extends React.Component {
     getInfo = ()=> {
         const that = this;
         axios({
-            url: `${configJson.prefix}/content/${this.props.match.params.id}/1`,
+            url: `${configJson.prefix}/content/${this.props.match.params.id}`,
             method: 'get',
         })
             .then(function (response) {

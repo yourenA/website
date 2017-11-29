@@ -12,7 +12,8 @@ class Nav extends React.Component {
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
-            showMobileMenu: false
+            showMobileMenu: false,
+            searchSelect: 'quanbu'
         }
     }
 
@@ -28,9 +29,6 @@ class Nav extends React.Component {
         this.props.history.push('/search');
     }
     showSearch = ()=> {
-        if (this.state.active) {
-            return false
-        }
         this.setState({
             active: true
         })
@@ -41,6 +39,19 @@ class Nav extends React.Component {
         this.setState({
             active: false
         })
+    }
+    handleChangeSearchSelect = (e)=> {
+        console.log(e.target)
+        this.setState({
+            searchSelect: e.target.value
+        })
+    }
+    submitSearch = (e)=> {
+        if (e.keyCode == 13) {
+            console.log(this.state.searchSelect, e.target.value)
+            // stopEvent(ev);//阻止enter键的默认行为
+            window.open(`http://localhost:3002/#/search?type=${this.state.searchSelect}&q=${e.target.value}`);
+        }
     }
 
     render() {
@@ -79,16 +90,24 @@ class Nav extends React.Component {
                     </span>
                 </div>
                 <div className="search-Placeholder">
-                    <input className={this.state.active ? 'active' : ''} placeholder="输入搜索内容" id="search"/>
+                    <div className={this.state.active ? ' search-wrap active' : 'search-wrap'}>
+                        <select name="" id="" value={this.state.searchSelect} onChange={this.handleChangeSearchSelect}>
+                            <option value="quanbu">全部</option>
+                            <option value="feilei">产品分类</option>
+                            <option value="chanping">产品</option>
+                            <option value="jianwen">简闻</option>
+                        </select>
+                        <input placeholder="输入搜索内容" id="search" onKeyDown={this.submitSearch}/>
+                    </div>
                     {this.state.active ? <i className="fa fa-close" aria-hidden="true" onClick={this.hideSearch}></i> :
-                        <i className="fa fa-search" aria-hidden="true" onClick={this.showSearch}></i>}</div>
+                        <i className="fa fa-search" aria-hidden="true" onClick={this.showSearch}></i>}
+                </div>
 
-                {/*<div className="mobile-menu-icon" onClick={this.showMobileSearch}>*/}
-                    {/*<i className="fa fa-search"></i>*/}
-                {/*</div>*/}
-
+                <div className="mobile-menu-icon" onClick={this.showMobileSearch}>
+                    <i className="fa fa-search"></i>
+                </div>
                 <div onClick={this.showMobileMenu}
-                    className={this.state.showMobileMenu ? "mobile-menu show-mobile-menu" : "mobile-menu hide-mobile-menu"}>
+                     className={this.state.showMobileMenu ? "mobile-menu show-mobile-menu" : "mobile-menu hide-mobile-menu"}>
                     <ul>
                         <li><Link to='/products'>产品与服务</Link></li>
                         <li><Link to='/news'>新闻</Link></li>

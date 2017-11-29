@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2017/9/13.
- */
 import React from 'react'
 import './partner.less'
 import Nav from './Nav'
@@ -75,43 +72,43 @@ export default class Partner extends React.Component {
         };
         var option = {
             backgroundColor: '#F6F7F0',
-            title: {
-                text: '主要分布省份',
-                bottom: 0,
-                left: '14%'
-            },
-            grid: [{x: '5%', y2: '7%', width: '30%', height: '38%',},//左下角
-            ],
+            // title: {
+            //     text: '主要分布省份',
+            //     bottom: 0,
+            //     left: '14%'
+            // },
+            // grid: [{x: '5%', y2: '7%', width: '30%', height: '38%',},//左下角
+            // ],
             tooltip: {
-                trigger: 'item',
+                // trigger: 'item',
             },
             xAxis: [
-                {
-                    name: '省份分布',
-                    axisLine: {
-                        lineStyle: {
-                            color: '#323c48'
-                        }
-                    },
-                    gridIndex: 0,
-                    data: ["广东", "福建", "浙江", "江苏", "山东", "黑龙江"],//xAxis中的data要与data中的数据一一对应
-                    axisTick: {
-                        alignWithLabel: true //刻度尺为位置在label中间，默认是在label两侧
-                    }
-                }, //gridIndex 对应的grid
+                // {
+                //     name: '省份分布',
+                //     axisLine: {
+                //         lineStyle: {
+                //             color: '#323c48'
+                //         }
+                //     },
+                //     gridIndex: 0,
+                //     data: ["广东", "福建", "浙江", "江苏", "山东", "黑龙江"],//xAxis中的data要与data中的数据一一对应
+                //     axisTick: {
+                //         alignWithLabel: true //刻度尺为位置在label中间，默认是在label两侧
+                //     }
+                // }, //gridIndex 对应的grid
             ],
             yAxis: [
-                {
-                    name: '数量',
-                    splitLine: {show: false},
-                    gridIndex: 0,
-                    axisLine: {
-                        lineStyle: {
-                            color: '#333'
-                        }
-                    },
-                    interval: 1
-                },
+                // {
+                //     name: '数量',
+                //     splitLine: {show: false},
+                //     gridIndex: 0,
+                //     axisLine: {
+                //         lineStyle: {
+                //             color: '#333'
+                //         }
+                //     },
+                //     interval: 1
+                // },
             ],
             geo: {
                 map: 'china', //地图类型
@@ -190,19 +187,20 @@ export default class Partner extends React.Component {
                             return params.name + ' <br/> ' + params.value[2].split(',').join('<br/>');
                         }
                     }
-                }, {
-                    name: '公司数量',
-                    type: 'bar',//条形图，设置为line则显示为折线图
-                    xAxisIndex: 0,
-                    yAxisIndex: 0,
-                    data: [5, 2, 2, 1, 1, 1],
-                    itemStyle: {
-                        normal: {
-                            color: '#323c48'
-                        }
-                    },
-
                 }
+                // , {
+                //     name: '公司数量',
+                //     type: 'bar',//条形图，设置为line则显示为折线图
+                //     xAxisIndex: 0,
+                //     yAxisIndex: 0,
+                //     data: [5, 2, 2, 1, 1, 1],
+                //     itemStyle: {
+                //         normal: {
+                //             color: '#323c48'
+                //         }
+                //     },
+                //
+                // }
             ]
         }
 
