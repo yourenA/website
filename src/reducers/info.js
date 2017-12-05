@@ -13,6 +13,7 @@ const initState={
     tel:'',
     fax:'',
     email:'',
+    contactUrl:'',
     link:[]
 };
 export default function baseInfo(state = initState ,action){
@@ -22,7 +23,7 @@ export default function baseInfo(state = initState ,action){
         case GET_BASEINFO_FAIL:
             return Object.assign({},state,{login:false});
         case GET_CONTACT_SUCCESS:
-            return Object.assign({},state,{loading:true,address:action.payload.address,tel:action.payload.tel,fax:action.payload.fax,email:action.payload.email});
+            return Object.assign({},state,{loading:true,address:action.payload.address,tel:action.payload.tel,fax:action.payload.fax,email:action.payload.email,contactUrl:action.payload.contactUrl});
         case GET_CONTACT_FAIL:
             return Object.assign({},state,{login:false});
         case GET_LINK_SUCCESS:

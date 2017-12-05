@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "AMwares",
+      "name": "ly-website",
       "script": "./server.js",
       "env": {
         "NODE_ENV": "production"

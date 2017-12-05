@@ -8,6 +8,9 @@ import './categoryInfeo.less'
 import ColorLine from './ColorLine'
 import axios from 'axios'
 import configJson from 'configJson' ;
+import PageHeader from './../../components/PageHeader'
+import PageTtile from './../../components/PageTitle'
+
 export default class CategoryInfo extends React.Component {
 
     constructor(props) {
@@ -15,6 +18,8 @@ export default class CategoryInfo extends React.Component {
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
+            name:'',
+            description:'',
             data: [],
             tempData: [],
             products: [],
@@ -25,7 +30,6 @@ export default class CategoryInfo extends React.Component {
 
     componentDidMount() {
         this.getInfo()
-        console.log(this.state.query)
     }
     GetQueryString=(name)=>{
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -38,7 +42,7 @@ export default class CategoryInfo extends React.Component {
     getInfo = ()=> {
         const that = this;
         axios({
-            url: `${configJson.prefix}/classify/1`,
+            url: `${configJson.prefix}/classify`,
             method: 'get',
         })
             .then(function (response) {
@@ -69,7 +73,27 @@ export default class CategoryInfo extends React.Component {
         })
         const that = this;
         axios({
-            url: `${configJson.prefix}/product/${id}/1`,
+            url: `${configJson.prefix}/classify/getById`,
+            method: 'get',
+            params:{
+                id:id
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.status === 200) {
+                    that.setState({
+                        name:response.data.data.name,
+                        description:response.data.data.description,
+                        classifyUrl:response.data.data.classifyUrl,
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+        axios({
+            url: `${configJson.prefix}/product/${id}`,
             method: 'get',
         })
             .then(function (response) {
@@ -100,7 +124,6 @@ export default class CategoryInfo extends React.Component {
             )
         })
         const categoryInfoContent = this.state.products.map(function (item, index) {
-            console.log('item',item)
             return (
                 <div className="detail-item" key={index}>
                     <div  >
@@ -118,29 +141,34 @@ export default class CategoryInfo extends React.Component {
             )
         })
         return (
-            <div className="categoryInfo-box">
-                <div className="categoryInfo">
-                    <div className="categoryInfo-slider">
-                        <ul style={{minHeight: this.state.slideMinHeight + 'px'}}>
-                            {categoryInfoSlider}
-                        </ul>
-                    </div>
-                    <div className="categoryInfo-content">
-                        <h3 className="category-title">{that.state.data[0]?that.state.data[0].name:null}</h3>
-                        <p className="category-desc">{that.state.data[0]?that.state.data[0].description:null}</p>
-                        <Masonry
-                            className={'my-gallery-class'} // default ''
-                            elementType={'ul'} // default 'div'
-                            options={masonryOptions} // default {}
-                            disableImagesLoaded={false} // default false
-                            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-                        >
-                            {categoryInfoContent}
-                        </Masonry>
-                    </div>
+            <div>
+                <PageHeader bgSrc={`${configJson.prefix}${this.state.classifyUrl}`}/>
+                <PageTtile title='辂轺产品与服务' desc='让汽车后市场互联互通！'/>
+                <div className="categoryInfo-box">
+                    <div className="categoryInfo">
+                        <div className="categoryInfo-slider">
+                            <ul style={{minHeight: this.state.slideMinHeight + 'px'}}>
+                                {categoryInfoSlider}
+                            </ul>
+                        </div>
+                        <div className="categoryInfo-content">
+                            <h3 className="category-title">{that.state.name}</h3>
+                            <p className="category-desc">{that.state.description}</p>
+                            <Masonry
+                                className={'my-gallery-class'} // default ''
+                                elementType={'ul'} // default 'div'
+                                options={masonryOptions} // default {}
+                                disableImagesLoaded={false} // default false
+                                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                            >
+                                {categoryInfoContent}
+                            </Masonry>
+                        </div>
 
+                    </div>
                 </div>
             </div>
+
 
         )
     }

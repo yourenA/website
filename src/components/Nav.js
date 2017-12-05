@@ -13,7 +13,7 @@ class Nav extends React.Component {
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
         this.state = {
             showMobileMenu: false,
-            searchSelect: 'quanbu'
+            searchSelect: 'all'
         }
     }
 
@@ -50,7 +50,7 @@ class Nav extends React.Component {
         if (e.keyCode == 13) {
             console.log(this.state.searchSelect, e.target.value)
             // stopEvent(ev);//阻止enter键的默认行为
-            window.open(`http://localhost:3002/#/search?type=${this.state.searchSelect}&q=${e.target.value}`);
+            window.open(`http://localhost:3018/#/search?type=${this.state.searchSelect}&q=${e.target.value}`);
         }
     }
 
@@ -92,10 +92,10 @@ class Nav extends React.Component {
                 <div className="search-Placeholder">
                     <div className={this.state.active ? ' search-wrap active' : 'search-wrap'}>
                         <select name="" id="" value={this.state.searchSelect} onChange={this.handleChangeSearchSelect}>
-                            <option value="quanbu">全部</option>
-                            <option value="feilei">产品分类</option>
-                            <option value="chanping">产品</option>
-                            <option value="jianwen">简闻</option>
+                            <option value="all">全部</option>
+                            <option value="classify">产品分类</option>
+                            <option value="product">产品</option>
+                            <option value="introduction">简闻</option>
                         </select>
                         <input placeholder="输入搜索内容" id="search" onKeyDown={this.submitSearch}/>
                     </div>

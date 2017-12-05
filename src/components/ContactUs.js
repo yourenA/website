@@ -9,6 +9,7 @@ import contact from '../image/contact.jpg'
 import AngleTop from './AngleTop'
 import AngleBottom from './AngleBottom'
 import {connect} from 'react-redux';
+import configJson from 'configJson' ;
  class ContactUs extends React.Component {
 
     constructor(props) {
@@ -21,6 +22,7 @@ import {connect} from 'react-redux';
 
     render() {
         const {info} =this.props
+        console.log(info)
         return (
             <div className="" style={{overflow: 'hidden'}}>
                 <Nav history={this.props.history}/>
@@ -32,7 +34,7 @@ import {connect} from 'react-redux';
                         <div className="contactUs-content-box">
                             <div className="contactUs-left">
                                 <div>
-                                    <img src={contact} alt=""/>
+                                    <img src={`${configJson.prefix}${info.contactUrl}`} alt=""/>
                                 </div>
                             </div>
                             <div className="contactUs-right">
