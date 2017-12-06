@@ -148,7 +148,7 @@ export default class SearchContainer extends React.Component {
             }else if(item.model==='introduction'){
                 return (
                     <li key={index} className="li-has-img">
-                        <div className="title"> <span className="label">简闻</span></div>
+                        <div className="title"> <span className="label">新闻</span></div>
                         <div className="content" style={{marginTop:'10px'}}>
                             {item.imageUrl&&<div className="img-wrap"><img src={`${configJson.prefix}${item.imageUrl}`} alt=""/></div>}
                             { this.renderDesc(`#/news#${item.id}`,item)}

@@ -69,7 +69,7 @@ class Nav extends React.Component {
                 <div className="left">
                     <ul>
                         <li><Link to='/products'>产品与服务</Link></li>
-                        <li><Link to='/news'>新闻</Link></li>
+                        <li><Link to='/news'>辂轺新闻</Link></li>
 
                         <li><Link to='/contact'>联系我们</Link></li>
                         <li><Link to='/partner'>合作伙伴</Link></li>
@@ -95,7 +95,7 @@ class Nav extends React.Component {
                             <option value="all">全部</option>
                             <option value="classify">产品分类</option>
                             <option value="product">产品</option>
-                            <option value="introduction">简闻</option>
+                            <option value="introduction">新闻</option>
                         </select>
                         <input placeholder="输入搜索内容" id="search" onKeyDown={this.submitSearch}/>
                     </div>
