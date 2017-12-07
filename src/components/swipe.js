@@ -32,7 +32,6 @@ export default class Swipe extends React.Component {
                         <div className="border border-left"></div>
                     </div>
                 </Link>
-
             </div>
         )
     }
