@@ -20,7 +20,7 @@ export default class Swipe extends React.Component {
                 <div className="banner-img">
                     <img src={`${configJson.prefix}${this.props.data.slideshowUrl}`} alt=""/>
                 </div>
-                <Link to='/'>
+                <Link to={this.props.data.link}>
                     <div className="banner-desc">
                         <div >
                             <p className="company-name">{this.props.data.title}</p>
