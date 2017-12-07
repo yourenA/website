@@ -76,7 +76,6 @@ export default class Category extends React.Component {
                     <ul className="category-ul">
                         {liMap}
                     </ul>
-
                 </div>
             </div>
 

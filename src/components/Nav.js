@@ -50,7 +50,7 @@ class Nav extends React.Component {
         if (e.keyCode == 13) {
             console.log(this.state.searchSelect, e.target.value)
             // stopEvent(ev);//阻止enter键的默认行为
-            window.open(`http://localhost:3018/#/search?type=${this.state.searchSelect}&q=${e.target.value}`);
+            window.open(`http://${window.location.host}/#/search?type=${this.state.searchSelect}&q=${e.target.value}`);
         }
     }
 
