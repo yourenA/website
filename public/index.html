@@ -23,6 +23,15 @@
     <script src="%PUBLIC_URL%/china.js"></script>
     <script src="https://cdn.bootcss.com/waypoints/4.0.1/noframework.waypoints.min.js"></script>
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <script>
+      function testJson(obj) {
+        console.log('obj',obj)
+        var proLen=obj.pro.length-1
+        var cityLen=obj.city.length-1
+        window.pro=obj.pro.substr(0,proLen);
+        window.city=obj.city.substr(0,cityLen);
+      }
+    </script>
     <!--<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>-->
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.

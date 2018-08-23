@@ -1,4 +1,3 @@
-
 import React from 'react'
 import {Route, Router} from 'react-router-dom'
 // import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
@@ -60,38 +59,51 @@ const NoFound = asyncComponent(() =>
 import
 (/* webpackChunkName: "nofound" */ "./containers/NoFound/index")
 )
+
+
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
+        this.state = {}
         //构造函数用法
         //常用来绑定自定义函数，切记不要在这里或者组件的任何位置setState，state全部在reducer初始化，相信对开发的后期很有帮助
     }
+
     componentDidMount() {
-        this.addData();
+        this.addScriptTag(`http://whois.pconline.com.cn/ipJson.jsp?callback=testJson&ip=${window.returnCitySN.cip}`,this.addData)
+        // this.addData();
         this.props.getBaseInfo();
         this.props.getContact();
         this.props.getLink()
     }
+
+    addScriptTag = (src, cb)=> {
+        var script = document.createElement('script');
+        script.setAttribute("type", "text/javascript");
+        script.src = src;
+        document.body.appendChild(script);
+        console.log('add script')
+        setTimeout(function () {
+            if(cb) cb()
+        },500)
+    }
     addData = ()=> {
-        const brower=parser(window.navigator);
-        let type=1;
-        if(brower.device.type==="tablet"){
-            type=3;
-        }else if(brower.device.type==="mobile"){
-            type=2;
+        const brower = parser(window.navigator);
+        let type = 1;
+        if (brower.device.type === "tablet") {
+            type = 3;
+        } else if (brower.device.type === "mobile") {
+            type = 2;
         }
         axios({
             url: `${configJson.prefix}/visitor/add`,
             method: 'POST',
             data: {
-                ip:window.returnCitySN.cip,
-                province:'广东',
-                city:'广州',
-                device:parser(window.navigator).device.model,
-                type:type
+                ip: window.returnCitySN.cip,
+                province:window.pro?window.pro:'未知省份',
+                city: window.city?window.city:'未知城市',
+                device: parser(window.navigator).device.model,
+                type: type
             },
         })
             .then(function (response) {
@@ -100,6 +112,7 @@ class App extends React.Component {
             console.log('获取出错', error);
         })
     }
+
     render() {
         // console.log(parser(window.navigator));
         return (
