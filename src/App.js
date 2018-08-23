@@ -88,8 +88,8 @@ class App extends React.Component {
             method: 'POST',
             data: {
                 ip:window.returnCitySN.cip,
-                province:window.remote_ip_info.province,
-                city:window.remote_ip_info.city,
+                province:'广东',
+                city:'广州',
                 device:parser(window.navigator).device.model,
                 type:type
             },

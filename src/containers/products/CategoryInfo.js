@@ -136,7 +136,6 @@ export default class CategoryInfo extends React.Component {
                             <Link to={`/products/${item.id}`}>查看详情</Link>
                         </div>
                     </div>
-
                 </div>
             )
         })
